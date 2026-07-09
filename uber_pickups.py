@@ -25,7 +25,7 @@ if st.checkbox('Show raw data'): # checkbox bepipálása akkor megjeleníti
     st.subheader('Raw data')
     st.write(data)
 
-
+st.divider()
 st.subheader('Number of pickups by hours')
 hist_values = np.histogram(data[DATE_COLUMN].dt.hour, bins=24,range=(0,24))[0]
 #gyakorisági sor ahol az órákat nézzük egy napban
@@ -33,10 +33,12 @@ st.bar_chart(hist_values) # oszlop diagram
 
 # st.subheader('Map of all pickups')
 # st.map(data)
-
-hour_to_filter = st.slider('hour',0,23,17) # min: 0h, max: 23h, default:17h)
+st.badge('Map',icon="🗺️",width='content',color="red")
+hour_to_filter = st.slider('hour',0,23,10) # min: 0h, max: 23h, default:17h)
 filtered_data = data[data[DATE_COLUMN].dt.hour == hour_to_filter] # megfelelő adatok kiválasztása
 st.subheader(f'Maps of all pickoups at {hour_to_filter}:00')
 st.map(filtered_data) # térkép megjelíntés
 
-
+st.write("Amount of data loaded: ")
+summary = np.count_nonzero(data.base) 
+st.metric("Amount of data loaded: ",summary, border=True, )
