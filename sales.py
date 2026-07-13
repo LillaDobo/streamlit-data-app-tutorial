@@ -21,8 +21,9 @@ if st.checkbox("Show raw data"):
     st.write(data)
 
 st.divider()
-
-month_to_filter = st.slider('Month',1,12,4)
+total_sales = round(data.Sales.sum(),2)
+st.metric('Total Sales: ', total_sales)
+# month_to_filter = st.slider('Month',1,12,4)
 
 
 
