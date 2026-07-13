@@ -11,6 +11,7 @@ def data_load(nrows):
     data = pd.read_csv("salesdata.csv",nrows=nrows)
     data["Order Date"] = pd.to_datetime(data["Order Date"],dayfirst=True)
     data["Ship Date"] = pd.to_datetime(data["Ship Date"],dayfirst=True)
+    data['Month'] = data['Order Date'].dt.month
     return data
 data_load_state= st.text("Done!")
 data = data_load(9800)
